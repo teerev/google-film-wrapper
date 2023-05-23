@@ -1,10 +1,31 @@
 # google-film-wrapper
 
-This is a basic wrapper for Google's [frame interpolation package](https://github.com/google-research/frame-interpolation)
+## What is this repo?
 
-This repo requires an Nvidia GPU, and the [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) to be installed. (Otherwise the Dockerfile will create the container without GPU support and it will not work.)
+- This is a basic wrapper for Google's [frame interpolation package](https://github.com/google-research/frame-interpolation) (FILM). It works with one particular commit hash (69f8708) to ensure compatibility. If you want to use the latest version of FILM, just modify the ````git clone```` command in the Dockerfile by replacing
 
-To use it, do the following steps, in this order:
+````
+RUN git clone https://github.com/google-research/frame-interpolation && \
+    cd frame-interpolation && \
+    git checkout 69f8708f08e62c2edf46a27616a4bfcf083e2076
+````
+with
+
+````
+RUN git clone https://github.com/google-research/frame-interpolation
+````
+with the understanding that any subsequent updates to the FILM repo may break this wrapper.
+
+
+- This repo requires an Nvidia GPU, and the [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) to be installed. (Otherwise the Dockerfile will create the container without GPU support and it will not work.)
+
+- This wrapper also only works with the "One mid-frame interpolation" method with the ````eval.interpolator_test```` script (inserting one interpolated frame for every pair, thereby doubling frame rate). The "Many in-between frames interpolation" with the ````eval.interpolator_cli```` script and the ````--times_to_interpolate```` flag throws dependency errors which I have not yet diagnosed. ("No package 'mediapy' found, or something.)
+
+
+
+
+
+## To use this wrapper, do the following steps, in this order:
 
 
 1. Clone this repo:
