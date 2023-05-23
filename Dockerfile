@@ -3,8 +3,5 @@ RUN mkdir -p /home/repos
 WORKDIR /home/repos
 RUN git clone https://github.com/google-research/frame-interpolation
 RUN mkdir -p /home/repos/google-film-wrapper
-RUN apt-get update && apt-get install -y ffmpeg
-#RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
-
-
+RUN apt-get update && apt-get install -y ffmpeg bc
 
