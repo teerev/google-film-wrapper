@@ -9,7 +9,6 @@ fi
 # check if container exists
 if [[ "$(docker ps -a -f name=gfw-container -q 2> /dev/null)" == "" ]]; then
     # create container with name "gfw-container" from image
-#    docker run -d --gpus '"device=1"' -v /home/repos/google-film-wrapper/:/home/repos/google-film-wrapper --name gfw-container gfw-image;
     docker run -d --gpus '"device=1"' -v /home/trev/repos/google-film-wrapper/:/home/repos/google-film-wrapper --name gfw-container gfw-image;
 
 fi
