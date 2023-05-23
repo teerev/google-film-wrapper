@@ -40,4 +40,5 @@ mv /home/repos/google-film-wrapper/fps-upscale/input/frames/*.png /home/repos/go
 cd /home/repos/google-film-wrapper/fps-upscale/output/frames/
 
 # Generate the output video and place in video output directory
-ffmpeg -framerate $frame_rate -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p ../video/${1}_upscaled.mp4
+output_file="${1%.*}_upscaled.mp4"
+ffmpeg -framerate $frame_rate -pattern_type glob -i '*.png' -c:v libx264 -pix_fmt yuv420p ../video/$output_file
