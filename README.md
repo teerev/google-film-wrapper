@@ -2,5 +2,102 @@
 
 This is a basic wrapper for Google's [frame interpolation package](https://github.com/google-research/frame-interpolation)
 
+This repo requires an Nvidia GPU, and the [Nvidia Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) to be installed. (Otherwise the Dockerfile will create the container without GPU support and it will not work.)
+
+To use it, do the following steps, in this order:
+
+
+1.Clone this repo:
+````bash
+https://github.com/teerev/google-film-wrapper.git
+````
+2.Download the pre-trained models from Google's [Drive directory](https://drive.google.com/drive/folders/1q8110-qp225asX3DQvZnfLfJPkCHmDpy?usp=sharing) into the repository's main directory. You should have a directory called ````pretrained_models```` in the repository's main directory so the working tree looks like this:
+
+````
+├── Dockerfile
+├── fps-upscale
+│   ├── input
+│   │   ├── frames
+│   │   │   ├── out00000001.png
+│   │   │   ├── out00000002.png
+│   │   │   ├── out00000003.png
+│   │   │   └── out00000004.png
+│   │   └── video
+│   │       └── eggs.mp4
+│   ├── output
+│   │   ├── frames
+│   │   │   ├── out00000001.png
+│   │   │   ├── out00000001.png_int.png
+│   │   │   ├── out00000002.png
+│   │   │   ├── out00000002.png_int.png
+│   │   │   ├── out00000003.png
+│   │   │   ├── out00000003.png_int.png
+│   │   │   └── out00000004.png
+│   │   └── video
+│   │       └── eggs_upscaled.mp4
+│   └── run.sh
+├── pretrained_models
+│   ├── film_net
+│   │   ├── L1
+│   │   │   └── saved_model
+│   │   │       ├── assets
+│   │   │       ├── keras_metadata.pb
+│   │   │       ├── saved_model.pb
+│   │   │       └── variables
+│   │   │           ├── variables.data-00000-of-00001
+│   │   │           └── variables.index
+│   │   ├── Style
+│   │   │   └── saved_model
+│   │   │       ├── assets
+│   │   │       ├── keras_metadata.pb
+│   │   │       ├── saved_model.pb
+│   │   │       └── variables
+│   │   │           ├── variables.data-00000-of-00001
+│   │   │           └── variables.index
+│   │   └── VGG
+│   │       └── saved_model
+│   │           ├── assets
+│   │           ├── keras_metadata.pb
+│   │           ├── saved_model.pb
+│   │           └── variables
+│   │               ├── variables.data-00000-of-00001
+│   │               └── variables.index
+│   └── vgg
+│       └── imagenet-vgg-verydeep-19.mat
+├── README.md
+└── setup.sh
+````
+
+3.Run the setup.sh file to create the Docker image and container using the Dockerfile, and execute the container's shell. (On subsequent runs, if the image/container already exist, it will just execute the shell.) The image name is set to ````gfw-image```` and the container name to ````gfw-container```` by default. You can change these in the ````setup.sh```` script
+
+````
+./setup.sh
+````
+
+4.Inside the container's shell, use the command ````ls````to verify that you have two directories. The directory ````frame-interpolation```` is the main code from the [frame interpolation package](https://github.com/google-research/frame-interpolation) and google-film-wrapper contains the tool in this repo:
+
+````
+frame-interpolation  google-film-wrapper
+````
+
+5.Navigate into ````google-film-wrapper/fps-upscale````, and run the ````run.sh```` script followed by the name of the .mp4 file you want to upscale. The .mp4 file needs to be located in the directory ````fps-upscale/input/video````:
+
+````
+./run.sh eggs.mp4
+````
+
+6. The upscaled video should appear in the directory ````fps-upscale/output/video````, along with the frames (source, and interpolated) in the directory ````fps-upscale/output/frames````.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
