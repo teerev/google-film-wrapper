@@ -1,4 +1,4 @@
-##!/bin/bash
+#!/bin/bash
 
 IMAGE_NAME=gfw-image
 CONTAINER_NAME=gfw-container
