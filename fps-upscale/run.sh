@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/repos/google-film-wrapper/fps-upscale/
+cd /home/repos/video-fps-upscale/fps-upscale/
 
 # extract frames from source video
 ffmpeg -i "./input/video/${1}" ./input/frames/out%08d.png
@@ -22,9 +22,9 @@ cd /home/repos/frame-interpolation/
 # Use FILM package on every adjacent frame pairing and output interpolated frames with names "<filename>_int.png"
 last_index=$(( ${#frames[@]} - 2 ))
 for ((idx=0; idx<=last_index; ++idx)); do
-  frame1="/home/repos/google-film-wrapper/fps-upscale/input/frames/${frames[idx]}"
-  frame2="/home/repos/google-film-wrapper/fps-upscale/input/frames/${frames[idx+1]}"
-  output_frame="/home/repos/google-film-wrapper/fps-upscale/output/frames/${frames[idx]}_int.png"
+  frame1="/home/repos/video-fps-upscale/fps-upscale/input/frames/${frames[idx]}"
+  frame2="/home/repos/video-fps-upscale/fps-upscale/input/frames/${frames[idx+1]}"
+  output_frame="/home/repos/video-fps-upscale/fps-upscale/output/frames/${frames[idx]}_int.png"
 
   echo "$frame1" "$frame2"
 
@@ -36,8 +36,8 @@ for ((idx=0; idx<=last_index; ++idx)); do
 done
 
 # Move frames to output directory
-mv /home/repos/google-film-wrapper/fps-upscale/input/frames/*.png /home/repos/google-film-wrapper/fps-upscale/output/frames/
-cd /home/repos/google-film-wrapper/fps-upscale/output/frames/
+mv /home/repos/video-fps-upscale/fps-upscale/input/frames/*.png /home/repos/video-fps-upscale/fps-upscale/output/frames/
+cd /home/repos/video-fps-upscale/fps-upscale/output/frames/
 
 # Generate the output video and place in video output directory
 output_file="${1%.*}_upscaled.mp4"
