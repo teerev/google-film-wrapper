@@ -2,7 +2,7 @@
 
 ## What is this repo?
 
-- This is a basic wrapper for Google's [frame interpolation package](https://github.com/google-research/frame-interpolation) (FILM). It works with one particular commit hash (69f8708) to ensure compatibility. If you want to use the latest version of FILM, just modify the ````git clone```` command in the Dockerfile by replacing
+- This software takes an .mp4 video as input and returns an .mp4 video with the frame rate doubled. It is just a thin wrapper built around Google's [frame interpolation package](https://github.com/google-research/frame-interpolation) (FILM) which takes two images as input and returns interpolated frame(s). This wrapper works with one particular commit hash (69f8708) to ensure compatibility. If you want to use the latest version of FILM, just modify the ````git clone```` command in the Dockerfile by replacing
 
 ````
 RUN git clone https://github.com/google-research/frame-interpolation && \
@@ -110,6 +110,11 @@ frame-interpolation  google-film-wrapper
 6. The upscaled video should appear in the directory ````fps-upscale/output/video````, along with the frames (source, and interpolated) in the directory ````fps-upscale/output/frames````.
 
 
+
+
+### Notes on benchmarks
+
+- 33 seconds per full HD (1920x1080) frame on an RTX 3060, i.e. about 1000 seconds of processing per second of footage at Full HD at 30fps (input) upscaled to 60fps (output).
 
 
 
