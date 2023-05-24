@@ -30,7 +30,7 @@ with the understanding that any subsequent updates to the FILM repo may break th
 
 1. Clone this repo:
 ````bash
-https://github.com/teerev/google-film-wrapper.git
+https://github.com/teerev/video-fps-upscale.git
 ````
 2. Download the pre-trained models from Google's [Drive directory](https://drive.google.com/drive/folders/1q8110-qp225asX3DQvZnfLfJPkCHmDpy?usp=sharing) into the repository's main directory. You should have a directory called ````pretrained_models```` in the repository's main directory so the working tree looks like this:
 
@@ -95,13 +95,13 @@ https://github.com/teerev/google-film-wrapper.git
 ./setup.sh
 ````
 
-4. Inside the container's shell, use the command ````ls````to verify that you have two directories. The directory ````frame-interpolation```` is the main code from the [frame interpolation package](https://github.com/google-research/frame-interpolation) and google-film-wrapper contains the tool in this repo:
+4. Inside the container's shell, use the command ````ls````to verify that you have two directories. The directory ````frame-interpolation```` is the main code from the [frame interpolation package](https://github.com/google-research/frame-interpolation) and video-fps-upscale contains the tool in this repo:
 
 ````
-frame-interpolation  google-film-wrapper
+frame-interpolation  video-fps-upscale
 ````
 
-5. Navigate into ````google-film-wrapper/fps-upscale````, and run the ````run.sh```` script followed by the name of the .mp4 file you want to upscale. The .mp4 file needs to be located in the directory ````fps-upscale/input/video````:
+5. Navigate into ````video-fps-upscale/fps-upscale````, and run the ````run.sh```` script followed by the name of the .mp4 file you want to upscale. The .mp4 file needs to be located in the directory ````fps-upscale/input/video````:
 
 ````
 ./run.sh eggs.mp4
